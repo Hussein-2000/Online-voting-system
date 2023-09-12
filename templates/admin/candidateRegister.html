@@ -1,0 +1,201 @@
+{% extends "/admin/AdminLayout.html"%}
+
+
+{% block content %}
+<div class="formElection">
+
+    <form action="/admin/NewCandidate" method="post" class="candidate" enctype="multipart/form-data">
+        <h2>Election registration form</h2>
+        <div class="form-group gender">
+            <label for="ElecName">active Elections</label>
+            <select id="ElecName" name="ElecName">
+                {% if elections|length > 0 %}
+                <option value="" selected disabled>Select your IsActive or not!</option>
+                {% for election in elections %}
+                <option value="{{ election.ElectionName }}">{{ election.ElectionName }}</option>
+                {% endfor%}
+                {% else %}
+                <option value="" selected disabled>Select your IsActive or not!</option>
+                <option value="d">No election has not been generated yet!!!</option>
+                {% endif%}
+            </select>
+        </div>
+        <div class="form-group fullname">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" placeholder="Enter your full name">
+        </div>
+        <div class="form-group email">
+            <label for="email">Email Address</label>
+            <input type="text" id="email" name="email" placeholder="Enter your email address">
+        </div>
+        <div class="form-group fullname">
+            <label for="Phone">Enter your phone number</label>
+            <input type="tel" id="Phone" name="Phone" placeholder="Enter your full name">
+        </div>
+
+        <div class="form-group date">
+            <label for="date">Birth Date</label>
+            <input type="date" id="date" name="date" placeholder="Select your date">
+        </div>
+        <div class="form-group gender">
+            <label for="sex">sex</label>
+            <select id="sex" name="sex">
+                <option value="" selected disabled>Select your sex</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+        <div class="form-group fullname">
+            <label for="halhays">Halahys-ka musharaxa</label>
+            <input type="text" id="halhays" name="halhays" placeholder="Halahys-ka musharaxa">
+        </div>
+        <div class="form-group fullname">
+            <label for="point1">qodobada muhiimka 1aad</label>
+            <input type="text" id="point1" name="point1" placeholder="qodobada muhiimka 1aad">
+        </div>
+        <div class="form-group fullname">
+            <label for="point2">qodobada muhiimka 2aad</label>
+            <input type="text" id="point2" name="point2" placeholder="qodobada muhiimka 2aad">
+        </div>
+        <div class="form-group fullname">
+            <label for="point3">qodobada muhiimka 3aad</label>
+            <input type="text" id="point3" name="point3" placeholder="qodobada muhiimka 3aad">
+        </div>
+        <div class="form-group fullname">
+            <label for="description">Faahfaahin dheeraad ah</label>
+            <textarea type="text" id="description" name="description"
+                placeholder="Faahfaahin dheeraad ah..."></textarea>
+        </div>
+        <div class="form-group fullname">
+            <label for="image">Sawirka musharaxa</label>
+            <input type="file" id="image" name="image" accept="image/*">
+            <br>
+        </div>
+
+
+        <div class="form-group submit-btn">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+
+</div>
+
+<script>
+    console.log("HI bilaw")
+
+    // Selecting form and input elements
+    const form = document.querySelector("form");
+    const passwordInput = document.getElementById("password");
+    const passToggleBtn = document.getElementById("pass-toggle-btn");
+
+    // Function to display error messages
+    const showError = (field, errorText) => {
+        field.classList.add("error");
+        const errorElement = document.createElement("small");
+        errorElement.classList.add("error-text");
+        errorElement.innerText = errorText;
+        field.closest(".form-group").appendChild(errorElement);
+    }
+
+    // Function to handle form submission
+    const handleFormData = (e) => {
+        e.preventDefault();
+
+        console.log("HI ")
+        // Retrieving input elements
+        const ElecNameInput = document.getElementById("ElecName");
+        const fullnameInput = document.getElementById("fullname");
+        const emailInput = document.getElementById("email");
+        const PhoneInput = document.getElementById("Phone");
+        const dateInput = document.getElementById("date");
+        const sexInput = document.getElementById("sex");
+        const halhaysInput = document.getElementById("halhays");
+        const point1Input = document.getElementById("point1");
+        const point2Input = document.getElementById("point2");
+        const point3Input = document.getElementById("point3");
+        const descriptionInput = document.getElementById("description");
+        const imageInput = document.getElementById("image");
+
+
+
+        // Getting trimmed values from input fields
+        const electName = ElecNameInput.value.trim()
+        const fullname = fullnameInput.value.trim();
+        const email = emailInput.value.trim();
+        const Phone = PhoneInput.value.trim();
+        const date = dateInput.value;
+        const sex = sexInput.value;
+        const halhays = halhaysInput.value.trim();
+        const point1 = point1Input.value;
+        const point2 = point2Input.value;
+        const point3 = point3Input.value;
+        const description = descriptionInput.value.trim();
+        const image = imageInput.value;
+
+        // Regular expression pattern for email validation
+        const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+        // Clearing previous error messages
+        document.querySelectorAll(".form-group .error").forEach(field => field.classList.remove("error"));
+        document.querySelectorAll(".error-text").forEach(errorText => errorText.remove());
+        console.log("HI conditions")
+
+        // Performing validation checks
+        if (electName === "") {
+            showError(ElecNameInput, "Please choose a election FIRST")
+        }
+        if (fullname === "") {
+            showError(fullnameInput, "Enter your full name");
+        }
+        if (!emailPattern.test(email)) {
+            showError(emailInput, "Enter a valid email address");
+        }
+        if (Phone === "") {
+            showError(PhoneInput, "Enter your Phone number");
+        }
+        if (date === "") {
+            showError(dateInput, "Select your date of birth");
+        }
+        if (sex === "") {
+            showError(sexInput, "Select your sex");
+        }
+        if (halhays === "") {
+            showError(halhaysInput, "Gali halhays-ka musharaxa");
+        }
+        if (point1 === "") {
+            showError(point1Input, "Gali qodobka 1aad");
+        }
+        if (point2 === "") {
+            showError(point2Input, "Gali qodobka 2aad");
+        }
+        if (point3 === "") {
+            showError(point3Input, "Gali qodobka 3aad");
+        }
+        if (description === "") {
+            showError(descriptionInput, "Gali faahfaahin dheeraad ah");
+        }
+        if (image === "") {
+            showError(imageInput, "Soo gali sawirka musharaxa");
+        }
+
+        // Checking for any remaining errors before form submission
+        const errorInputs = document.querySelectorAll(".form-group .error");
+        if (errorInputs.length > 0) return;
+
+        // Submitting the form
+        form.submit();
+    }
+
+    // Toggling password visibility
+    // passToggleBtn.addEventListener('click', () => {
+    //     passToggleBtn.className = passwordInput.type === "password" ? "fa-solid fa-eye-slash" : "fa-solid fa-eye";
+    //     passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+    // });
+
+    // Handling form submission event
+    form.addEventListener("submit", handleFormData);
+</script>
+
+
+
+{% endblock %}

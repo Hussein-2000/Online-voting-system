@@ -1,0 +1,21 @@
+{% extends "/admin/AdminLayout.html"%}
+
+{% block content %}
+
+    <h2>Doorashada {{ election.ElectionName }}</h2>
+
+    {% if candidates | length > 0 %}
+
+        <p>Candidates List Length: {{ candidates | length }}</p>
+        
+        {% for candidate in candidates %}
+            <h2>{{ candidate.fullName }}</h2>
+
+        {% endfor %}
+    {% else %}
+
+        <h3>There is no candidates in this election!...</h3>
+
+    {% endif %}
+
+{% endblock %}

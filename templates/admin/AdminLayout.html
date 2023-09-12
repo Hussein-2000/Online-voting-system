@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  {% if title %}
+  <title>Online voting system - {{ title }}</title>
+  {% else %}
+  <title>Online voting system - Home</title>
+  {% endif %}
+
+  <link rel="stylesheet" href=".../../../../static/css/styles.css" />
+  <!-- Boxicons CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+</head>
+
+<body>
+  <nav class="sidebar locked">
+    <div class="logo_items flex">
+      <span class="nav_image">
+        <img src=".../../../../static/image/logo.png" alt="logo_img" />
+      </span>
+      <span class="logo_name">Online Voting system</span>
+      <i class="bx bx-lock-alt" id="lock-icon" title="Unlock Sidebar"></i>
+      <i class="bx bx-x" id="sidebar-close"></i>
+    </div>
+
+    <div class="menu_container">
+      <div class="menu_items">
+        <ul class="menu_item">
+          <li class="item">
+            <a href="{{ url_for('AdminHome')}}" class="link flex">
+              <i class="bx bx-home-alt"></i>
+              <span>Dashboard </span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="{{ url_for('ElectionRegistration')}}" class="link flex">
+              <i class="bx bx-grid-alt"></i>
+              <span>Generate election</span>
+            </a>
+          </li>
+        </ul>
+
+        <ul class="menu_item">
+          <li class="item">
+            <a href="{{ url_for('CandidateRegistration')}}" class="link flex">
+              <i class="bx bx-cloud-upload"></i>
+              <span>Add candinate</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="" class="link flex">
+              <i class="bx bxs-magic-wand"></i>
+              <span>Upload voters</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="{{ url_for('elections')}}" class="link flex">
+              <i class="bx bx-folder"></i>
+              <span>View election</span>
+            </a>
+          </li>
+        </ul>
+
+        <li class="item">
+          <a href="#" class="link flex">
+            <i class="bx bx-flag"></i>
+            <span>View voters</span>
+          </a>
+        </li>
+        <li class="item">
+          <a href="{{ url_for('AdminHome')}}" class="link flex">
+            <i class="bx bx-home-alt"></i>
+            <span>Dashboard </span>
+          </a>
+        </li>
+        <li class="item">
+          <a href="{{ url_for('AdminHome')}}" class="link flex">
+            <i class="bx bx-home-alt"></i>
+            <span>Dashboard </span>
+          </a>
+        </li>
+        <li class="item">
+          <a href="{{ url_for('AdminHome')}}" class="link flex">
+            <i class="bx bx-home-alt"></i>
+            <span>Dashboard </span>
+          </a>
+        </li>
+        <li class="item">
+          <a href="{{ url_for('Logout')}}" class="link flex">
+            <i class="bx bx-award"></i>
+            <span>Logout</span>
+          </a>
+        </li>
+
+        </ul>
+      </div>
+
+      <div class="sidebar_profile flex">
+        <span class="nav_image">
+          <img src=".../../../../static/image/profile.jpg" alt="logo_img" />
+        </span>
+        <div class="data_text">
+          <span class="name">{{ user.username }}</span>
+          <span class="email">{{ user.email }}</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Navbar -->
+  <!-- <nav class="navbar flex">
+      <i class="bx bx-menu" id="sidebar-open"></i>
+      <input type="text" placeholder="Search..." class="search_box" />
+      <span class="nav_image">
+        <img src=".../../../../static/image/profile.jpg" alt="logo_img" />
+      </span>
+    </nav> -->
+
+  <main>
+
+    {% with messeges = get_flashed_messages(with_categories=true) %}
+    {% if messeges %}
+    {% for category, messeges in messeges %}
+    <div class="alert {{ category }}-alert">
+      <h3>{{ messeges }}</h3>
+      <a class="close">&times;</a>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    {% block content%} {% endblock %}
+  </main>
+
+  <script src=".../../../../static/js/scripts.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    </script>
+  <script>
+    $(".close").click(function () {
+      $(this)
+        .parent(".alert")
+        .fadeOut();
+    });
+
+  </script>
+
+</body>
+
+</html>
