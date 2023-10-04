@@ -1,0 +1,63 @@
+{% extends "/admin/AdminLayout.html"%}
+
+{% block content %}
+
+<div class="candinate_view">
+    <div class="row">
+        <div class="col-5">
+            <div class="candinate_image">
+                <img src="data:image/png;base64, {{ image }}" alt="Candinator image ">
+
+            </div>
+        </div>
+        <div class="col-7">
+            <div class="candinate_name">
+                <h2 class="musharax">Musharaxa {{ election }} </h2>
+                <div class="info">
+                    <h2 class="Name"><span>Name: </span>{{ candinate.fullName }}</h2>
+                    <p><span>E-mail: </span>{{ candinate.email }}</p>
+                    <p><span>Tell: </span>{{ candinate.tell }}</p>
+                    <p><span>Age: </span>{{ age }} Years old <span>&nbsp; &nbsp; &nbsp; &nbsp;Sex: </span>{{
+                        candinate.sex }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-5">
+            <div class="dooro">
+                <h1 class="halhays"> {{ candinate.halheys }} </h1>
+
+                <h4>Ku dooro: </h4>
+                <ul>
+                    <li>{{ candinate.point1 }}</li>
+                    <li>{{ candinate.point2 }}</li>
+                    <li>{{ candinate.point3 }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-7">
+            <div class="description">
+                <h2>Faahdaahinta musharaxa</h2>
+                <p>
+                    {{ candinate.description }} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores qui corrupti velit asperiores nisi ex fuga suscipit reprehenderit cumque deserunt neque cum accusantium veniam, odio sunt a sapiente nesciunt labore?
+                    At, voluptate odio asperiores quo soluta quisquam, alias, exercitationem ad ipsam molestias distinctio. Ad nostrum voluptate nesciunt placeat laudantium. Accusamus quis ducimus culpa recusandae unde sequi quidem molestias exercitationem harum.
+                    In, id! Quos tempore quod placeat mollitia, fugit maiores alias, non officiis quaerat iure itaque adipisci assumenda nesciunt ratione iste aut nobis. Maiores saepe ullam, nobis officiis quos quis officia.
+                    Explicabo praesentium totam laboriosam magni, eius saepe modi dignissimos, omnis in nihil atque cumque laborum consequatur doloremque corporis assumenda officiis! Saepe, cumque doloribus! Libero dolores assumenda animi reiciendis deleniti fuga!
+                    Corporis molestiae reprehenderit tempore magni, at doloremque. Veritatis voluptatem porro harum veniam possimus cum excepturi minima magni, praesentium voluptates repellendus beatae totam reprehenderit deleniti neque maxime. Exercitationem commodi iure doloremque.
+                    At perspiciatis delectus fugit quisquam voluptate? Dolore cumque hic architecto, at corporis, ipsum quam esse commodi incidunt ipsam libero laboriosam est voluptas impedit. Soluta, cupiditate! Fuga perspiciatis inventore enim odio.
+                    Unde architecto animi nobis reiciendis autem, non adipisci suscipit quisquam impedit distinctio totam, cum maxime ex eius numquam laborum, ipsa beatae repudiandae aliquam. Animi beatae iste reiciendis itaque quia non?
+                    A possimus debitis voluptates, veritatis, quis dolorum minima sed consequuntur animi facilis, pariatur ipsam repellat minus incidunt unde eum rerum rem vitae necessitatibus. Aperiam nostrum qui asperiores recusandae. Expedita, provident?
+                    Cumque enim nisi ratione possimus reiciendis delectus voluptatum, et porro corrupti obcaecati? Perferendis illum rerum molestiae nisi fuga facere non corrupti nostrum. Debitis placeat natus at fugiat, illo minima ducimus.
+                    Doloribus ipsum corporis officia perferendis aliquid incidunt deserunt eligendi aspernatur eum? Quia atque ea voluptatem, tempore quaerat consequatur mollitia odit deleniti vel provident suscipit quam facere iste, ex fugit illo.
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+{% endblock %}

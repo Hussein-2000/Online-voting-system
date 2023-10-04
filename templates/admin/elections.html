@@ -14,24 +14,24 @@
       </tr>
     </thead>
     <tbody>
-      {% for election in elections %}
+      {% for election in range(elections | length) %}
       <tr class="hover-row">
-        <th class="left-border" scope="row">{{ election.id }}</th>
-        <td class="left-border">{{ election.ElectionName }}</td>
-        <td class="left-border">{{ election.description}}</td>
-        <td class="left-border">{{ election.EndDate }}</td>
+        <th class="left-border" scope="row">{{ election + 1 }}</th>
+        <td class="left-border">{{ elections[election].ElectionName }}</td>
+        <td class="left-border">{{ elections[election].description}}</td>
+        <td class="left-border">{{ elections[election].EndDate }}</td>
 
-        {% if election.Isactive == True %}
+        {% if elections[election].Isactive == True %}
         <td class="left-border bg-success"> Active </td>
-        {% elif election.Isactive == False %}
+        {% elif elections[election].Isactive == False %}
         <td class="left-border"> In active </td>
         {% endif %}
 
         <td class="left-border">
           <div class="buttonsActions">
-            <a class="button edit-btn" data-election="{{ election.id }}" href="#">Edit</a>
-            <a class="button two" href="#">Delete</a>
-            <a class="button edit-btn" data-election="{{ election.id }}"  href="{{ url_for('candidatesPAge')}}">View candidates</a>
+            <a class="button edit-btn" data-election="{{ elections[election].id }}" onclick=Edit_election(event) >Edit</a>
+            <a class="button two" data-election="{{ elections[election].id }}" onclick=Delte_election(event) >Delete</a>
+            <a class="button edit-btn" data-election="{{ elections[election].id }}" onclick=Candidates(event)>View candidates</a>
             {% endfor %}
             <a href="" class="d" val ></a>
     </tbody>
@@ -40,30 +40,69 @@
 </div>
 
 <script>
-  // Shorthand version of $(document).ready()
-  $(function () {
-    // Add click event listener to the edit buttons
-    $('.edit-btn').click(function () {
-      const election = $(this).data('election');
-      const url = '/admin/Candidates';  // The endpoint URL where you want to send the election ID
+   const Candidates = (e)=>{
+   const id = e.target.getAttribute("data-election");
+   const url = '/admin/getcandidates';
 
-      // Send data to the server using AJAX (POST request)
-      $.ajax({
-        url: url,
-        method: 'POST',
-        contentType : 'application/json', // Set content type to JSON
-        data: JSON.stringify({ election: election }),  // Data to send to the server
-        success: function (response) {
-          // Handle the response from the server if needed
-          console.log(response);
-        },
-        error: function (error) {
-          // Handle errors
-          console.error('Error:', error);
-        }
-      });
-    });
-  });
+   fetch(url, {
+    method:"post",
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(id)
+   })
+   .then((res) => res.json())
+   .then((res) => {
+    console.log('res :>> ', res);
+    const id = res.id;
+    const title = res.title;
+    const url = `/admin/candidates?id=${id}&title=${title}`;
+    window.location.replace(url);
+   })
+   .catch((err) => {console.log(err);})
+};
+
+const Delte_election = (e)=>{
+   const id = e.target.getAttribute("data-election");
+   const url = '/admin/Delete_election';
+
+   fetch(url, {
+    method:"post",
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(id)
+   })
+   .then((res) => res.json())
+   .then((res) => {
+    console.log('res :>> ', res);
+    const id = res.id;
+    const title = res.title;
+    const url = `/admin/Deletion?id=${id}&title=${title}`;
+    window.location.replace(url);
+   })
+  //  
+   .catch((err) => {console.log(err);})
+};
+
+const Edit_election = (e)=>{
+   const id = e.target.getAttribute("data-election");
+   const url = '/admin/Eidt_election';
+
+   fetch(url, {
+    method:"post",
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(id)
+   })
+   .then((res) => res.json())
+   .then((res) => {
+    console.log('res :>> ', res);
+    const id = res.id;
+    const title = res.title;
+    const url = `/admin/Eidting_election?id=${id}&title=${title}`;
+    window.location.replace(url);
+   })
+   
+   .catch((err) => {console.log(err);})
+};
+
+
 </script>
 
 

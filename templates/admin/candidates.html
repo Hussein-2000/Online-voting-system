@@ -1,21 +1,88 @@
 {% extends "/admin/AdminLayout.html"%}
 
 {% block content %}
-
-    <h2>Doorashada {{ election.ElectionName }}</h2>
+<div class="container">
+    <h2 class="electionName">Doorashada {{ election.ElectionName }}</h2>
 
     {% if candidates | length > 0 %}
+    <div class="card_container">
+        <div class="row">
+            {% for i in range(candidates | length) %}
+            {% for image in range(images | length) %}
+            {% if image == i %}
+            <div class="col-md-4">
+                <!-- Adjust the col-md-4 class to control the number of columns per row -->
 
-        <p>Candidates List Length: {{ candidates | length }}</p>
+                <div class="card mb-4">
+                    <div class="banner">
+                        <img src="data:image/png;base64, {{ images[image] }}" alt="Candidate">
+                    </div>
+                    <div class="menu">
+                        <div class="opener">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <h2 class="name">{{ candidates[i].fullName }}</h2>
+                    <div class="title">{{ candidates[i].halheys }}</div>
+                    <div class="desc">
+                        <h3 class="ku">Ku dooro : </h3>
+                        <ul>
+                            <li>{{ candidates[i].point1 }}</li>
+                            <li>{{ candidates[i].point2 }}</li>
+                            <li>{{ candidates[i].point3 }}</li>
+                        </ul>
+                    </div>
+                    <div class="actions">
+                        <div class="follow-info">
+                            <h2><a href="#"><span>12</span><small>Vote</small></a></h2>
+                        </div>
+                        <div class="follow-btn">
+                            
+                            <button data-id="{{candidates[i].id }}" data-election="{{ election.ElectionName }}" onclick=candinateView(event)>View for more</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         
-        {% for candidate in candidates %}
-            <h2>{{ candidate.fullName }}</h2>
-
+        {% endif %}
         {% endfor %}
+        {% endfor %}
+    </div>
+    </div>
     {% else %}
-
-        <h3>There is no candidates in this election!...</h3>
-
+    <h3>There are no candidates in this election!...</h3>
     {% endif %}
+</div>
 
+<script>
+    const candinateView = (e) => {
+        const id = e.target.getAttribute('data-id');
+        const election = e.target.getAttribute('data-election');
+        const url = '/admin/candidateViews';
+        const data = {
+            "id": id,
+            "election": election
+        }
+
+        fetch(url, {
+            method: 'POST',
+            headers: {"content-type": "application/json"},
+            body: JSON.stringify(data)
+        })
+        .then((res)=> res.json())
+        .then((res) => {
+            console.log(res)
+            const id = res.id
+            const title = res.title
+            const election = res.election
+            const url = `/admin/candidateView?id=${id}&title=${title}&election=${election}`;
+            window.location.replace(url);
+        });
+
+        
+    }
+
+</script>
 {% endblock %}

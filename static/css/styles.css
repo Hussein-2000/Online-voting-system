@@ -498,3 +498,315 @@ div.table-container{
   border-left: 1px solid white !important;
 
 }
+
+
+/* =============================================================================================== */
+/* CANDINATES STYLEES ====================================================  ============================  ==============  */
+:root {
+  --font-color: #404040;
+  --dp-size: 8rem;
+  --padding-size: 2rem;
+  --opener-size: 2.5rem;
+  --dot-size: 0.4rem;
+}
+
+/* Import Google Font */
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,400i,700");
+
+
+/* Card Styles */
+.card_container{
+  margin-left: 7.5rem; /* Move columns to the right */
+  margin-right: auto; /* Move columns to the right */
+} 
+.card {
+  background-color: white;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 2rem;
+  box-shadow: 0px 1rem 1.5rem rgba(0, 0, 0, 0.5);
+
+}
+/* Reduce space between columns */
+.row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.col-md-4 {
+  padding: 0 15px;
+}
+
+  .banner {
+    background-image: url(https://images.unsplash.com/photo-1545703549-7bdb1d01b734?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 11rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+.card .banner img {
+  background-color: white;
+  width: 10.5rem;
+  height: 10.5rem;
+  box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  transform: translateY(50%);
+  transition: transform 20  0ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+.card .banner img:hover {
+  transform: translateY(50%) scale(1.3);
+}
+
+.card .menu {
+  width: 100%;
+  height: 5.5rem;
+  padding: 1rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.card .menu .opener {
+  width: var(--opener-size);
+  height: var(--opener-size);
+  position: relative;
+  border-radius: 50%;
+  transition: background-color 100ms ease-in-out;
+}
+
+.card .menu .opener:hover {
+  background-color: #f2f2f2;
+}
+
+.card .menu .opener span {
+  background-color: var(--font-color);
+  width: var(--dot-size);
+  height: var(--dot-size);
+  position: absolute;
+  top: 0;
+  left: calc(50% - var(--dot-size) / 2);
+  border-radius: 50%;
+}
+
+.card .menu .opener span:nth-child(1) {
+  top: 0.45rem;
+}
+
+.card .menu .opener span:nth-child(2) {
+  top: 1.05rem;
+}
+
+.card .menu .opener span:nth-child(3) {
+  top: 1.65rem;
+}
+
+.card h2.name {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bolder;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  padding: 0 var(--padding-size) 0.5rem;
+  margin: 0.7rem 0 0 0 ;
+}
+
+.card .title {
+  color: lighten(var(--font-color), 50%);
+  font-size: 1.25rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: center;
+  margin-top: 10px;
+  padding: 0 var(--padding-size) 1.2rem;
+}
+.card .desc {
+  text-align: justify;
+  padding: 0 var(--padding-size) 2.5rem;
+  font-weight: bolder;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  order: 99;
+}
+.card .desc .ku{
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.card .actions {
+  padding: 0 var(--padding-size) 1.2rem;
+  display: flex;
+  flex-direction: column;
+  order: 100;
+}
+
+.card .actions .follow-info {
+  padding: 0 0 1rem;
+  display: flex;
+  margin-left: 5rem;
+}
+
+.card .actions .follow-info h2 {
+  text-align: center;
+  width: 50%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.card .actions .follow-info a {
+  text-decoration: none;
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.8rem;
+  transition: background-color 100ms ease-in-out;
+}
+
+.card .actions .follow-info a span {
+  color: #1c9eff;
+  font-weight: bolder;
+  font-size: 3rem;
+  transform-origin: bottom;
+  transform: scaleY(1.3);
+  transition: color 100ms ease-in-out;
+}
+
+.card .actions .follow-info a small {
+  color: #afafaf;
+  font-size: 0.85rem;
+  font-weight: normal;
+}
+
+.card .actions .follow-info a:hover {
+  background-color: #f2f2f2;
+}
+
+.card .actions .follow-info a:hover span {
+  color: #007ad6;
+}
+
+.card .actions .follow-btn button {
+  color: inherit;
+  font: inherit;
+  font-weight: bold;
+  background-color: #ffd01a;
+  width: 100%;
+  border: none;
+  padding: 1rem;
+  outline: none;
+  box-sizing: border-box;
+  border-radius: 1.5rem / 50%;
+  transition: background-color 100ms ease-in-out, transform 200ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+.card .actions .follow-btn button:hover {
+  background-color: #efb10a;
+  transform: scale(1.1);
+}
+
+.card .actions .follow-btn button:active {
+  background-color: #e8a200;
+  transform: scale(1);
+}
+.container .electionName{
+  margin-left: 20rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* ============================================================================================== */
+/* ================================ candinate_view ============================================================================================= */
+div.candinate_view {
+  width: 1000px !important;
+  height: 100% !important; 
+  margin: 60px auto;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  background-color:rgba(237, 243, 248, 0.435);
+  border-left: 2px solid var(--prussian-blue);
+}
+div.info{
+  width: 100% !important;
+  height: 100% !important; 
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  padding: 10px !important;
+  background-color:rgba(237, 243, 248, 0.435);
+  border-left: 2px solid var(--prussian-blue);
+  border-left: 3px solid red;
+
+}
+
+.candinate_image img{
+  background-color: white;
+  width: 20rem;
+  height: 20rem;
+  box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  transform: translateY(0%);
+  transition: transform 20  0ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+.candinate_image img:hover {
+  transform: translateY(20%) scale(1.6);
+}
+
+div.candinate_name {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin-top: 10px;
+  
+}
+div.candinate_name .musharax {
+  font-size: 25px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+}
+div.candinate_name  span {
+  font-size:30px;
+  font-family:'Times New Roman', Times, serif;
+  color:rgb(30, 147, 205);
+}
+ .halhays {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: Sedgwick Ave Display, cursive;
+  margin-top: 50px;
+  border-left: 3px solid rgb(206, 101, 82);
+  padding-left: 5px;
+  background-color: rgb(22, 181, 220);
+  box-shadow: 0 0.25rem 0.22rem rgba(0, 0, 0, 0.3);
+}
+
+.dooro{
+  margin-top: 5px;
+}
+.dooro h4{
+  font-size: 30px;
+  font-weight: 700;
+  font-family: Sedgwick Ave Display, cursive;
+}
+.dooro  ul li{
+
+  font-size: 25px;
+  font-weight: 800;
+  font-family: 'Croissant One', cursive;
+}
+.description {
+  width: 100% !important;
+  height: 100% !important; 
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  padding: 10px !important;
+  background-color:rgba(237, 243, 248, 0.435);
+  border-left: 2px solid var(--prussian-blue);
+  border-left: 7px solid rgb(38, 183, 219);
+  margin-top: 50px;
+}

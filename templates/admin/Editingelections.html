@@ -1,0 +1,44 @@
+{% extends "/admin/AdminLayout.html"%}
+
+
+{% block content %}
+<div class="formElection">
+
+    <form action="/admin/UpdateElection" method="post">
+        <h2>Election registration form</h2>
+        <div class="form-group fullname">
+            <input type="hidden" id="Electionid" name="Electionid" placeholder="Enter the election name" value="{{ election.id}}">
+        </div>
+        <div class="form-group fullname">
+            <label for="ElectionName">Election name</label>
+            <input type="text" id="ElectionName" name="ElectionName" placeholder="Enter the election name" value="{{ election.ElectionName}}">
+        </div>
+        <div class="form-group email">
+            <label for="desc">Description</label>
+            <input type="text" name="desc" id="desc" placeholder="Enter your description" value="{{ election.description}}">
+          </div>
+        <div class="form-group date">
+            <label for="EndDate">End Date</label>
+            <input type="date" id="EndDate" name="EndDate" placeholder="Select ending date" value="{{ election.EndDate}}">
+        </div>
+        <div class="form-group gender">
+            <label for="IsActive">Is active</label>
+            <select id="IsActive" name="IsActive">
+                <option value="{{ election.EndDate}}" selected disabled>
+                    {% if election.Isactive == False %}
+                        NO
+                    {% else %}
+                        Yes
+                    {% endif %}
+                </option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </div>
+        <div class="form-group submit-btn">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+
+</div>
+{% endblock%}
