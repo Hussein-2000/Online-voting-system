@@ -7,7 +7,8 @@
   font-family: "Poppins", sans-serif;
 }
 body {
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  margin: 0;
   background: #eef5fe;
 }
 /* Pre css */
@@ -156,16 +157,16 @@ body {
 
 /* Navbar */
 .navbar {
-  max-width: 500px;
+  /* max-width: 500px;
   width: 100%;
   position: fixed;
-  top: 0;
-  left: 60%;
-  transform: translateX(-50%);
-  background: #fff;
-  padding: 10px 20px;
-  border-radius: 0 0 8px 8px;
-  justify-content: space-between;
+  top: 0; */
+  /* left: 60%; */
+  /* transform: translateX(-50%); */
+  /* background: #fff; */
+  /* padding: 10px 20px; */
+  /* border-radius: 0 0 8px 8px; */
+  /* justify-content: space-between; */
 }
 #sidebar-open {
   font-size: 30px;
