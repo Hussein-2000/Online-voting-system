@@ -407,11 +407,9 @@ def UpdatingElection():
 # Candinate views page
 @app.route('/admin/candidateViews', methods=['GET', 'POST'])
 def candidateViews():
-    data = request.get_json('id')
+    data = request.get_json()
     id = data.get('id')
     election = data.get('election')
-    print("id: ", id)
-    print("election: ", election)
     data = {"title": "Candidater", "id": id, "election": election}
     return jsonify(data)
 
@@ -420,6 +418,7 @@ def candidateViews():
 def candidateView():
     id = request.args.get('id')
     election = request.args.get('election')
+    print("election: " + election)
 
     candinate = db.session.query(candidates).filter(candidates.id == id).first()
 
@@ -438,8 +437,35 @@ def candidateView():
     return render_template('admin/candidateView.html', candinate=candinate, image = image , age = age , election=election , user=current_user, title="Candinate view")
 
 
+# ================ ================ EDiting and updating candinate ================ ================
+@app.route('/admin/Editcandinate', methods=['POST'])
+def edit_candinate():
+    data = request.get_json()
+    print("data: ", data)
+    
+    id = data.get('id')
+    election = data.get('election')
+    data = {"title": "Candidate", "id": id, "election": election}
+    return jsonify(data)
+
+    # return render_template('admin/candinateEditing.html', candinate=candinate, election=election, user=current_user, title="Edit candidateinate")
 
 
+
+
+@app.route('/admin/Editingcandinate', methods=['POST', 'GET'])
+def editing_candinate():
+    id = request.args.get('id')
+    candinate = db.session.query(candidates).filter(candidates.id == id).first()
+    electionNow = request.args.get('election')
+
+    candidate_image = candinate.image
+    image = display_image(candidate_image)
+
+
+    return render_template('admin/candinateEditing.html', candinate=candinate, image = image ,electionNow=electionNow, user=current_user, title="Edit candidateinate")
+
+    
 
 # ========= User Management system =============================
 @app.route('/User_login' , methods=['POST', 'GET'])

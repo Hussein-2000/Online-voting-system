@@ -39,8 +39,9 @@
                             <h2><a href="#"><span>12</span><small>Vote</small></a></h2>
                         </div>
                         <div class="follow-btn">
-                            
-                            <button data-id="{{candidates[i].id }}" data-election="{{ election.ElectionName }}" onclick=candinateView(event)>View for more</button>
+                            <button data-id="{{ candidates[i].id }}" data-election="{{ election.ElectionName }}" onclick=candinateEdit(event)>Edit</button>
+                            <button data-id="{{candidates[i].id }}" data-election="{{ election.ElectionName }}" onclick=candinateView(event)>Delete</button>
+                            <button data-id="{{candidates[i].id }}" data-election="{{ election.ElectionName }}" onclick=candinateView(event)>View</button>
                         </div>
                     </div>
                 </div>
@@ -73,7 +74,7 @@
         })
         .then((res)=> res.json())
         .then((res) => {
-            console.log(res)
+            console.log("Res",res)
             const id = res.id
             const title = res.title
             const election = res.election
@@ -84,5 +85,62 @@
         
     }
 
+    const candinateEdit = (e) => {
+        const id = e.target.getAttribute('data-id');
+        const election = e.target.getAttribute('data-election');
+        const url = '/admin/Editcandinate';
+        const data = {
+            "id": id,
+            "election": election
+        }
+
+        fetch(url, {
+            method: 'POST',
+            headers: {"content-type": "application/json"},
+            body: JSON.stringify(data)
+        })
+        .then((res)=> res.json())
+        .then((res) => {
+            console.log("Res",res)
+            const id = res.id
+            const title = res.title
+            const election = res.election
+            const url = `/admin/Editingcandinate?id=${id}&title=${title}&election=${election}`;
+            window.location.replace(url);
+        });
+
+        
+    }
+    
+    
 </script>
-{% endblock %}
+<!-- {% endblock %}
+
+const candinateEdit = (e) => {
+    const candinate = e.target.getAttribute('data-id');
+    const election = e.target.getAttribute('data-election');
+    const url = '/admin/Editcandinate';
+    const data = {
+        "candinate": candinate,
+        "election": election
+    }
+
+    fetch(url, {
+        method: 'POST',
+        headers: {"content-type": "application/json"},
+        body: JSON.stringify(data)
+    })
+    .then((res)=> res.json())
+    .then((res) => {
+        console.log("res.",res)
+        candinate = res.candinate
+        // console.log(candinate)
+        const title = "Edit candinate"
+        const election = res.election
+        // let candinate = "10"
+        const url = `/admin/Editingcandinate?id=${candinate}&title=${title}&election=${election}`;
+        window.location.replace(url);
+    });
+
+    
+} -->

@@ -696,9 +696,9 @@ div.table-container{
   font: inherit;
   font-weight: bold;
   background-color: #ffd01a;
-  width: 100%;
+  width: 100px;
   border: none;
-  padding: 1rem;
+  padding: 0.8rem;
   outline: none;
   box-sizing: border-box;
   border-radius: 1.5rem / 50%;
