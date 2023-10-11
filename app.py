@@ -461,6 +461,7 @@ def editing_candinate():
 
     candidate_image = candinate.image
     image = display_image(candidate_image)
+    # hot
 
 
     return render_template('admin/candinateEditing.html', candinate=candinate, image = image ,electionNow=electionNow, user=current_user, title="Edit candidateinate")
