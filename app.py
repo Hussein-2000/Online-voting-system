@@ -7,10 +7,9 @@ from flask_sqlalchemy import SQLAlchemy as sq
 from sqlalchemy import func, ForeignKey
 import datetime
 from sqlalchemy.orm import session, sessionmaker, relationship
-from io import BytesIO
-from PIL import Image
+# from io import BytesIO
+# from PIL import Image
 import os
-from shutil import copyfile
 
 
 
@@ -466,7 +465,48 @@ def editing_candinate():
 
     return render_template('admin/candinateEditing.html', candinate=candinate, image = image ,electionNow=electionNow, user=current_user, title="Edit candidateinate")
 
-    
+
+@app.route('/admin/UpdateCandinate', methods=['POST', 'GET'])
+def update_candinate():
+    print("Updating candidateinate")
+    if not current_user.is_authenticated:
+        flash(f'Please login first...', category='danger')
+        return redirect(url_for('admin_login'))
+    else:
+        if request.method == 'POST':
+
+            
+            image_file = request.files['image'].read()
+            original_image_name = request.form.get('fullname').strip(' ')[0] + '.png'
+            image = save_image(image_file, original_image_name)
+
+
+            electioName = request.form.get('ElecName')
+            election = db.session.query(Elections).filter_by(ElectionName=electioName).first()
+            
+            
+
+            electionId = election.id
+            fullname = request.form.get('fullname')
+            email = request.form.get('email')
+            Phone = request.form.get('Phone')
+            birthDate_str = request.form.get('date')
+            birthDate = datetime.datetime.strptime(birthDate_str, '%Y-%m-%d' ).date()
+            sex = request.form.get('sex')
+            halhays = request.form.get('halhays')
+            point1 = request.form.get('point1')
+            point2 = request.form.get('point2')
+            point3 = request.form.get('point3')
+            description = request.form.get('description')
+
+            # NewCandidate = candidates(electionsId=electionId, fullName=fullname, email=email, tell=Phone, birthDate=birthDate, sex=sex, 
+                                    #   halheys=halhays, point1=point1, point2=point2, point3=point3, description=description, image=image)
+            # db.session.add(NewCandidate)
+            # db.session.commit()
+
+            return redirect(url_for('CandidatePage'))
+
+
 
 # ========= User Management system =============================
 @app.route('/User_login' , methods=['POST', 'GET'])

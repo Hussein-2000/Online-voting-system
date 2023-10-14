@@ -1,0 +1,4 @@
+flak
+flask_wtf
+sqlalchemy
+flask_login
